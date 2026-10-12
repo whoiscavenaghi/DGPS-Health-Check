@@ -1,0 +1,8 @@
+Bibliotecas externas (baixar UMA vez de um computador com internet e colocar nesta pasta):
+
+ jspdf.umd.min.js    https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js
+ xlsx.full.min.js    https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js
+ heic2any.min.js     https://cdn.jsdelivr.net/npm/heic2any@0.0.4/dist/heic2any.min.js   (opcional: fotos HEIC do iPhone)
+
+Ja incluidos: pdf.min.mjs e pdf.worker.min.mjs (leitura do relatorio IBGE-PPP).
+Sem esses arquivos o app tenta baixar da internet; sem internet, PDF/Excel nao funcionam.

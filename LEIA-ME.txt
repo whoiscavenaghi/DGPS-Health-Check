@@ -1,0 +1,11 @@
+DGPS Health Check - instalacao em servidor NAS
+Desenvolvido por Ernani Vilela - vilelaernani@gmail.com / (c) 2026 Ernani Vilela
+
+1) Copiar esta pasta inteira (index.html + lib/) para a pasta web do NAS
+   (Synology: Web Station / pasta "web"; QNAP: Qweb; ou Apache/Nginx/IIS).
+2) Baixar os arquivos listados em lib/LEIA-ME.txt para a pasta lib/.
+3) Abrir no navegador: http://IP-DO-NAS/dgps-health-check/
+   IMPORTANTE: abrir pelo endereco http, nao clicando duas vezes no arquivo
+   (leitura do PDF do IBGE-PPP exige servidor web).
+4) Os dados ficam apenas no navegador de quem usa; nada e enviado ao servidor.
+   O rascunho salvo e por navegador/computador.
