@@ -408,7 +408,7 @@
   let lastText = null, lastName = '', rawRows = [], nmeaInfo = null;
   const GMS_SYM = /[°º´˝′″"']/;
   function parseText(text, gms) {
-    let lines = text.split(/\r?\n/).map(l => l.trim()).filter(l => l && !l.startsWith('#') && !l.startsWith('//'));
+    let lines = text.split(/\r?\n/).filter(l => l.trim() && !l.trimStart().startsWith('#') && !l.trimStart().startsWith('//'));
     // GMS: troca os símbolos e separadores por espaço (preserva a vírgula decimal) para cada coordenada virar 3 colunas
     if (gms) lines = lines.map(l => l.replace(/[°º´˝′″"']/g, ' ').replace(/[;\t]+/g, ' ').replace(/,\s+/g, ' ').replace(/\s+/g, ' ').trim());
     if (!lines.length) throw new Error('Arquivo vazio.');
@@ -416,7 +416,7 @@
     const probe = lines[Math.min(1, lines.length - 1)];
     let sep;
     if (gms) sep = /\s+/;
-    else if (probe.includes('\t')) sep = /\t+/;
+    else if (probe.includes('\t')) sep = /\t/;
     else if (probe.includes(';')) sep = /;/;
     else if (probe.includes(',') && probe.includes('.')) sep = /,/;
     else if (probe.includes(',') && !/\s/.test(probe)) sep = /,/;
@@ -424,7 +424,7 @@
     const toNum = (t) => { t = t.trim(); if (t === '') return NaN; if (/^-?\d{1,3}(\.\d{3})*,\d+$/.test(t) || /^-?\d+,\d+$/.test(t)) t = t.replace(/\./g, '').replace(',', '.'); return Number(t); };
     const data = [], rawTok = []; let hdr = [];
     lines.forEach((l, i) => {
-      const parts = l.split(sep).map(p => p.trim()).filter(p => p !== '');
+      const parts = (sep.source === '\\s+' ? l.trim() : l).split(sep).map(p => p.trim());
       const nums = parts.map(toNum);
       const numericCount = nums.filter(n => isFinite(n)).length;
       if (numericCount >= 2 && numericCount >= parts.length - 2) { data.push(nums); rawTok.push(parts); }
